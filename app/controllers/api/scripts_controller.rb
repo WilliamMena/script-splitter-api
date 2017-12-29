@@ -44,7 +44,7 @@ class Api::ScriptsController < ApplicationController
   end
 
   def script_params
-    params.require(:script).permit(:title, :text, :user_id)
+    params.require(:script).permit(:title, :text, :user_id, :characters)
 
   end
 
