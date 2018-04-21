@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180421233936) do
+ActiveRecord::Schema.define(version: 20180421235534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "captions", force: :cascade do |t|
+    t.text "text"
+    t.boolean "completed"
+    t.time "timecode"
+    t.bigint "script_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["script_id"], name: "index_captions_on_script_id"
+  end
 
   create_table "scripts", force: :cascade do |t|
     t.bigint "user_id"
@@ -32,5 +42,6 @@ ActiveRecord::Schema.define(version: 20180421233936) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "captions", "scripts"
   add_foreign_key "scripts", "users"
 end
