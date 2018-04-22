@@ -9,6 +9,9 @@ class Api::ScriptsController < ApplicationController
   def create
     user = User.find(script_params[:user_id])
     script = user.scripts.new(script_params)
+    script.setCaptionsFromText(script)
+
+
     if script.save
       render json: script
     else
