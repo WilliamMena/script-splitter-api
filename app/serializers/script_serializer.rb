@@ -1,5 +1,5 @@
 class ScriptSerializer < ActiveModel::Serializer
   attributes :id, :user_id, :title, :text, :characters
 
-  has_many :captions
+  has_many :captions, serializer: CaptionSerializer
 end
