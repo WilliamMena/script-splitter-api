@@ -8,7 +8,13 @@ class Api::ScriptsController < ApplicationController
 
   def create
     user = User.find(script_params[:user_id])
+
     script = user.scripts.new(script_params)
+
+    if script.characters == nil || script.characters == 0
+      script.characters = 45
+    end
+
     script.save
     script.setCaptionsFromText(script)
 
