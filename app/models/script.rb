@@ -25,7 +25,12 @@ class Script < ApplicationRecord
     captionsArray.each {|caption|
       script.captions.create(text: caption, completed: false, timecode: Time.new(000))
     }
+  end
 
-    binding.pry
+
+  def destoryAllCaptions
+    self.captions.each {|caption|
+      caption.destroy
+    }
   end
 end
