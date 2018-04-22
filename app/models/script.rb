@@ -14,13 +14,18 @@ class Script < ApplicationRecord
     #I know need to create a function that will import text into the array as long as the string is under the specified character constraint
 
     textArray.each_with_index {|string, index|
-    if (captionsArray[currentCaptionCount].length + string.length)  <= limit
-      captionsArray[currentCaptionCount] += "#{textArray[index]} "
-    else
-      currentCaptionCount += 1
-      captionsArray.push("#{textArray[index]} ")
-    end
+      if (captionsArray[currentCaptionCount].length + string.length)  <= limit
+        captionsArray[currentCaptionCount] += "#{textArray[index]} "
+      else
+        currentCaptionCount += 1
+        captionsArray.push("#{textArray[index]} ")
+      end
     }
+
+    captionsArray.each {|caption|
+      script.captions.create(text: caption, completed: false, timecode: Time.new(000))
+    }
+
     binding.pry
   end
 end
