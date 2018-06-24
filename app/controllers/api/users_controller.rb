@@ -8,5 +8,4 @@ class Api::UsersController < ApplicationController
     render json: User.find(params[:id])
   end
 
-
 end
