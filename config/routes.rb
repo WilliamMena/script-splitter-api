@@ -3,5 +3,8 @@ Rails.application.routes.draw do
   namespace :api do
     resources :scripts, except: [:new, :edit]
     resources :users, only: [:index, :show]
+
+    post '/login', to: "sessions#create"
+    get '/logout', to: "sessions#destroy"
   end
 end
