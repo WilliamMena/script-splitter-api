@@ -1,4 +1,3 @@
-require 'auth'
 class Api::SessionsController < ApplicationController
 
   def create
@@ -6,8 +5,8 @@ class Api::SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
 
-      token = Auth.create_token({username: user.username, id: user.id, email: user.email})
-      returned_user = Auth.decode_token(token)
+      token = JsonWebToken.encode({username: user.username, id: user.id, email: user.email})
+      returned_user = JsonWebToken.decode(token)
       render json: {username: user.username, id: user.id, email: user.email, token: token}, status: 200
     else
       render json: {errors: "Email or Password is incorrect"}, status: 500
