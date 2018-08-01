@@ -15,6 +15,13 @@ class Api::ScriptsController < ApplicationController
       script.characters = 45
     end
 
+    splitTime = script_params["timecode"].split(":")
+    hour = splitTime[0]
+    min = splitTime[1]
+    sec = splitTime[2]
+
+    script.timecode = Time.new(1991, 11, 22, hour, min, sec, "-00:00")
+
     script.save
     script.setCaptionsFromText(script)
 
@@ -53,7 +60,7 @@ class Api::ScriptsController < ApplicationController
   end
 
   def script_params
-    params.require(:script).permit(:title, :text, :user_id, :characters)
+    params.require(:script).permit(:title, :text, :user_id, :characters, :timecode)
 
   end
 
