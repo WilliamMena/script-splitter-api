@@ -3,7 +3,7 @@ class Api::ScriptsController < ApplicationController
   before_action :set_script, only: [:show, :edit, :update, :destroy]
 
   def index
-    render json: Script.all, :include => [:created_at, :timecode]
+    render json: Script.all.to_json
   end
 
   def create
