@@ -27,7 +27,7 @@ class Script < ApplicationRecord
     }
   end
 
-
+  # destroyAll function
   def destoryAllCaptions
     self.captions.each {|caption|
       caption.destroy
