@@ -27,14 +27,13 @@ class Script < ApplicationRecord
 
     # line that converts time to timecode
     # Time.at((length/captionsArray.length) * 1).utc.strftime("%H:%M:%S")
-    binding.pry
     counter = 0
     captionsArray.each {|caption|
       start_time = Time.at((length/captionsArray.length) * counter).utc.strftime("%H:%M:%S")
       end_time = Time.at((length/captionsArray.length) * (counter + 1)).utc.strftime("%H:%M:%S")
 
-
       script.captions.create(text: caption, completed: false, timecode: Time.new(000), in_point: start_time, out_point: end_time)
+      counter += 1
     }
   end
 
