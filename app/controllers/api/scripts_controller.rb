@@ -8,8 +8,24 @@ class Api::ScriptsController < ApplicationController
 
   def create
     user = User.find(script_params[:user_id])
-
+    # [13] pry(#<Api::ScriptsController>)> d = Time.parse('1991-11-22')
+    # => 1991-11-22 00:00:00 -0500
+    # [14] pry(#<Api::ScriptsController>)> Time.parse(script_params[:timecode], d)
+    # => 1991-11-22 00:00:00 -0500
+    # [15] pry(#<Api::ScriptsController>)> Time.parse("00:06:00", d)
+    # => 1991-11-22 00:06:00 -0500
+    # [16] pry(#<Api::ScriptsController>)> new_d = _
+    # => 1991-11-22 00:06:00 -0500
+    # [17] pry(#<Api::ScriptsController>)> new_d - d
+    # => 360.0
+    # [18] pry(#<Api::ScriptsController>)> 360 / 60
+    # => 6
     script = user.scripts.new(script_params)
+    d = Time.parse('1991-11-22')
+    script.timecode = Time.parse(script_params[:timecode], d)
+
+
+
 
     if script.characters == nil || script.characters == 0
       script.characters = 45
@@ -53,7 +69,7 @@ class Api::ScriptsController < ApplicationController
   end
 
   def script_params
-    params.require(:script).permit(:title, :text, :user_id, :characters)
+    params.require(:script).permit(:title, :text, :user_id, :characters, :timecode)
 
   end
 
