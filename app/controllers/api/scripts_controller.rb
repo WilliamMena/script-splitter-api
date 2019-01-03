@@ -21,7 +21,7 @@ class Api::ScriptsController < ApplicationController
     # [18] pry(#<Api::ScriptsController>)> 360 / 60
     # => 6
     script = user.scripts.new(script_params)
-    d = Time.parse('1991-11-22')
+    d = Time.parse('2000-1-1')
     script.timecode = Time.parse(script_params[:timecode], d)
 
 
