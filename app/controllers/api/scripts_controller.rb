@@ -22,10 +22,12 @@ class Api::ScriptsController < ApplicationController
     # => 6
     script = user.scripts.new(script_params)
     d = Time.parse('2000-1-1')
-    script.timecode = Time.parse("#{script_params[:timecode]}-0000", d)
 
-
-
+    if script_params[:timecode] === "00:00:00"
+      script.timecode = Time.parse("00:10:00-0000", d)
+    else
+      script.timecode = Time.parse("#{script_params[:timecode]}-0000", d)
+    end
 
     if script.characters == nil || script.characters == 0
       script.characters = 45
