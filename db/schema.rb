@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20190103031505) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "characters"
-    t.time "timecode"
     t.index ["user_id"], name: "index_scripts_on_user_id"
   end
 
@@ -43,8 +42,6 @@ ActiveRecord::Schema.define(version: 20190103031505) do
     t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
-    t.string "email"
   end
 
   add_foreign_key "captions", "scripts"
