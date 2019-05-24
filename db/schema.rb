@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20190103031505) do
   create_table "scripts", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
+    t.time "timecode"
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
