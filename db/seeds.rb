@@ -16,8 +16,14 @@ Deep v vexillologist duis, iceland eiusmod brunch 3 wolf moon ramps cardigan wil
 
 Gastropub exercitation veniam, snackwave paleo est id. Schlitz hot chicken mlkshk next level, whatever aliqua ramps kinfolk live-edge. Adipisicing cold-pressed tbh, fingerstache celiac flannel esse pop-up deep v consequat eu organic veniam. Keffiyeh semiotics duis VHS, banjo celiac pork belly meh fanny pack. Paleo fingerstache banjo four dollar toast, squid tofu velit wolf. Kitsch aliquip polaroid voluptate, bicycle rights quis salvia pop-up bitters anim selfies everyday carry."
 
+d = Time.parse('2000-1-1')
+
 william = User.create(username: "William", password: "password")
-william.scripts.create(title: "Test Script", text: ipsum1)
+william.scripts.create(title: "Test Script", text: ipsum1, timecode: Time.parse("00:10:00-0000", d))
+script1 = william.scripts.last
+script1.setCaptionsFromText(script1)
 
 rocio = User.create(username: "Rocio", password: "password")
-rocio.scripts.create(title: "Test Script 2", text: ipsum2)
+rocio.scripts.create(title: "Test Script 2", text: ipsum2, timecode: Time.parse("00:06:00-0000", d))
+script2 = rocio.scripts.last
+script2.setCaptionsFromText(script2)

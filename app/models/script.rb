@@ -5,7 +5,7 @@ class Script < ApplicationRecord
   def setCaptionsFromText(script)
 
     text = script.text
-    limit = script.characters
+    limit = script.characters || 45
     currentCaptionCount = 0
 
     textArray = text.split(" ")
